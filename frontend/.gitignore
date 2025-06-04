@@ -1,0 +1,26 @@
+# Node.js / Frontend (React avec Vite)
+/frontend/react-cloud/node_modules
+/frontend/react-cloud/dist
+/frontend/react-cloud/.env
+/frontend/react-cloud/.env.local
+/frontend/react-cloud/.env.*.local
+
+# Python / Backend
+/__pycache__/
+*.pyc
+.Python
+env/
+venv/
+*.env # Pour les fichiers d'environnement secrets
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
