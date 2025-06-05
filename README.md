@@ -29,14 +29,19 @@ Backend (Django)
 Naviguer dans le dossier backend :cd backend
 
 
-Installer les dépendances :pip install -r requirements.txt
+Installer les dépendances à partir de requirements.txt :pip install -r requirements.txt
 
 
-Si requirements.txt n’existe pas, créez-le avec les dépendances utilisées (ex. django, djangorestframework, mysqlclient, django-cors-headers) et exécutez la commande ci-dessus.
+Dépendances incluses : django, djangorestframework, mysqlclient, django-cors-headers, asgiref, sqlparse, tzdata.
 
 
 Configurer la base de données :
 Créez une base de données cloud_services dans phpMyAdmin (http://localhost/phpmyadmin).
+Créez un utilisateur MySQL :CREATE USER 'api_user'@'localhost' IDENTIFIED BY 'votre_mot_de_passe';
+GRANT ALL PRIVILEGES ON cloud_services.* TO 'api_user'@'localhost';
+FLUSH PRIVILEGES;
+
+
 Mettez à jour settings.py avec vos identifiants MySQL :DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -69,10 +74,13 @@ Naviguer dans le dossier frontend :cd frontend/react-cloud
 Installer les dépendances :npm install
 
 
+Dépendances incluses : react, axios.
+
+
 Lancer l’application :npm run dev
 
 
-Accédez à http://localhost:5173 (ou le port indiqué dans la console).
+Accédez à http://localhost:5173 (port par défaut de Vite).
 
 
 
@@ -91,19 +99,22 @@ Interface cliente :
 Affichage de la liste des services dans un tableau.
 Formulaire pour ajouter un nouveau service.
 Boutons pour modifier ou supprimer un service.
+Capture d’écran de l’interface (si disponible).
 
 
 
 Tests
 
 Postman : Une collection (Cloud_Services_API.postman_collection.json) est fournie pour tester les endpoints. Importez-la dans Postman pour exécuter les tests automatiques.
+Capture d’écran de Postman (si disponible).
 Instructions : Voir API_DOCUMENTATION.md pour les détails des endpoints et des exemples de requêtes.
 
 Configuration serveur
 
 Environnement : WAMP sur Windows (Apache, PHP, MySQL, phpMyAdmin).
+Base de données : MySQL, accessible via phpMyAdmin (http://localhost/phpmyadmin).
 FTP : Configuré avec FileZilla Server (dossier racine : C:\wamp64\www).
-Documentation d’installation : Incluse dans les commentaires du code backend et dans le rapport final.
+Capture d’écran de phpMyAdmin (si disponible).
 
 Démonstration
 
@@ -124,7 +135,7 @@ Entreprise : INTEGRIS SARL
 Contact : contact@integriscloud.com
 
 Licence
-MIT License (ou spécifiez une licence appropriée selon les exigences d’INTEGRIS SARL).
+MIT License
 Remarques
 
 Assurez-vous que WAMP est en cours d’exécution avant de lancer le backend ou le frontend.
