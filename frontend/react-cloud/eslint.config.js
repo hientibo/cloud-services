@@ -1,33 +1,40 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-
-export default [
-  { ignores: ['dist'] },
-  {
-    files: ['**/*.{js,jsx}'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        ecmaFeatures: { jsx: true },
-        sourceType: 'module',
-      },
-    },
-    plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-    },
-    rules: {
-      ...js.configs.recommended.rules,
-      ...reactHooks.configs.recommended.rules,
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-    },
+module.exports = {
+  root: true,
+  extends: [
+    "@ljharb",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:react-refresh/recommended"
+  ],
+  env: {
+    browser: true,
+    es2021: true,
+    node: true
   },
-]
+  parserOptions: {
+    ecmaVersion: 2021,
+    sourceType: "module"
+  },
+  plugins: [
+    "react",
+    "react-hooks",
+    "react-refresh"
+  ],
+  rules: {
+    "new-cap": [
+      2,
+      {
+        capIsNewExceptions: [
+          "GetIntrinsic"
+        ]
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react-refresh/only-export-components": "warn"
+  },
+  settings: {
+    react: {
+      version: "detect"
+    }
+  }
+};
