@@ -96,7 +96,7 @@ module.exports = {
 }
 
 
-Vérifiez postcss.config.js :export default {
+Renommez postcss.config.js en postcss.config.cjs et mettez à jour son contenu :module.exports = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
@@ -112,7 +112,7 @@ Ajoutez les directives Tailwind à src/index.css :@tailwind base;
 
 
 Configurer ESLint :
-Un fichier .eslintrc.cjs est inclus pour configurer ESLint. Il est compatible avec React et ESM. Pour vérifier le linting :npm run lint
+Un fichier .eslinrc.cjs est inclus pour configurer ESLint. Il est compatible avec React et ESM. Pour vérifier le linting :npm run lint
 
 
 
@@ -121,6 +121,16 @@ Lancer l’application :npm run dev
 
 
 Accédez à http://localhost:5173.
+
+
+
+Intégration API
+
+Le frontend consomme l’API Django via des requêtes HTTP (ex. GET http://127.0.0.1:8000/api/services/).
+Le composant ServiceList (dans src/components/ServiceList.jsx) gère l’affichage, l’ajout, la modification et la suppression des services.
+Configurez CORS dans backend/settings.py si nécessaire :CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+]
 
 
 
@@ -136,10 +146,9 @@ Documentation détaillée : API_DOCUMENTATION.md.
 
 
 Interface client :
-Affichage de la liste des services.
-Formulaire pour créer un nouveau service.
-Page pour modifier les détails d’un service.
-Boutons pour supprimer un service.
+Affichage de la liste des services avec nom, description, prix et type.
+Formulaire pour ajouter ou modifier un service (champs : nom, description, prix, type).
+Boutons pour modifier ou supprimer un service.
 Stylisation avec Tailwind CSS.
 Capture de l’interface (si disponible).
 
@@ -164,7 +173,7 @@ Durée : 15 minutes.
 Plan suggéré :
 2 min : Présentation du projet et objectifs.
 5 min : Démonstration de l’installation (clonage, configuration backend/frontend).
-5 min : Test de l’API avec Postman et navigation dans l’interface React.
+5 min : Test de l’API avec Postman et navigation dans l’interface React (ajout, modification, suppression).
 3 min : Questions et conclusion.
 
 
