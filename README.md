@@ -146,9 +146,10 @@ Documentation détaillée : API_DOCUMENTATION.md.
 
 
 Interface client :
-Affichage de la liste des services avec nom, description, prix et type.
-Formulaire pour ajouter ou modifier un service (champs : nom, description, prix, type).
+Affichage de la liste des services avec nom, description complète, prix et type.
+Formulaire élargi pour ajouter ou modifier un service (champs : nom, description longue, prix, type).
 Boutons pour modifier ou supprimer un service.
+Titre de la page défini sur "Cloud Services - INTEGRIS SARL".
 Stylisation avec Tailwind CSS.
 Capture de l’interface (si disponible).
 
@@ -177,7 +178,7 @@ Plan suggéré :
 3 min : Questions et conclusion.
 
 
-Accéder au dépôt GitHub pour les ressources : GitHub.
+Accéder au dépôt GitHub pour les ressources : https://github.com/hientibo/cloud-services.
 
 Contributeurs
 
