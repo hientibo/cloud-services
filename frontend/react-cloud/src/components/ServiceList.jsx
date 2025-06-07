@@ -69,12 +69,11 @@ const ServiceList = () => {
                     required
                     className="w-full px-4 py-2 border rounded"
                 />
-                <input
-                    type="text"
+                <textarea
                     placeholder="Description"
                     value={form.description}
                     onChange={(e) => setForm({ ...form, description: e.target.value })}
-                    className="w-full px-4 py-2 border rounded"
+                    className="w-full px-4 py-4 border rounded h-24 resize-y"
                 />
                 <input
                     type="number"
@@ -126,12 +125,12 @@ const ServiceList = () => {
                 {services.map((srv) => (
                     <li
                         key={srv.id}
-                        className="border p-4 rounded flex items-center justify-between"
+                        className="border p-4 rounded flex items-start justify-between"
                     >
-                        <div className="flex-1 overflow-hidden">
-                            <p className="font-semibold truncate">{srv.name} - {srv.price}€</p>
-                            <p className="text-sm text-gray-600 truncate">{srv.description}</p>
-                            <p className="text-xs text-gray-500 truncate">Type : {srv.service_type}</p>
+                        <div className="flex-1 max-w-[70%]">
+                            <p className="font-semibold">{srv.name} - {srv.price}€</p>
+                            <p className="text-sm text-gray-600 whitespace-pre-wrap break-words">{srv.description}</p>
+                            <p className="text-xs text-gray-500">Type : {srv.service_type}</p>
                         </div>
                         <div className="flex-shrink-0 ml-4 space-x-2">
                             <button
@@ -150,7 +149,6 @@ const ServiceList = () => {
                     </li>
                 ))}
             </ul>
-
         </div>
     );
 };
