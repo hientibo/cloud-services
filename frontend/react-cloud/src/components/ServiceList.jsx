@@ -126,14 +126,14 @@ const ServiceList = () => {
                 {services.map((srv) => (
                     <li
                         key={srv.id}
-                        className="border p-4 rounded flex justify-between items-center"
+                        className="border p-4 rounded flex items-center justify-between"
                     >
-                        <div>
-                            <p className="font-semibold">{srv.name} - {srv.price}€</p>
-                            <p className="text-sm text-gray-600">{srv.description}</p>
-                            <p className="text-xs text-gray-500">Type : {srv.service_type}</p>
+                        <div className="flex-1 overflow-hidden">
+                            <p className="font-semibold truncate">{srv.name} - {srv.price}€</p>
+                            <p className="text-sm text-gray-600 truncate">{srv.description}</p>
+                            <p className="text-xs text-gray-500 truncate">Type : {srv.service_type}</p>
                         </div>
-                        <div className="space-x-2">
+                        <div className="flex-shrink-0 ml-4 space-x-2">
                             <button
                                 onClick={() => handleEdit(srv)}
                                 className="bg-yellow-400 text-white px-3 py-1 rounded hover:bg-yellow-500"
@@ -150,6 +150,7 @@ const ServiceList = () => {
                     </li>
                 ))}
             </ul>
+
         </div>
     );
 };
