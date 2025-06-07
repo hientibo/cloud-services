@@ -3,7 +3,7 @@ Introduction
 Ce projet, réalisé dans le cadre d'un stage chez INTEGRIS SARL, vise à développer une solution complète pour la gestion de services cloud. Il comprend :
 
 Un backend basé sur Django avec une API RESTful pour gérer des services cloud (stockage, calcul, sécurité, etc.).
-Un frontend en React (via Vite) pour une interface utilisateur interactive.
+Un frontend en React (via Vite) pour une interface utilisateur interactive, stylisé avec Tailwind CSS.
 Une configuration serveur utilisant WAMP sur Windows, avec MySQL et phpMyAdmin.
 Des tests automatisés avec Postman.
 
@@ -23,6 +23,7 @@ Installation
 Cloner le dépôt
 git clone https://github.com/hientibo/cloud-services.git
 cd cloud_services
+git checkout main
 
 Backend (Django)
 
@@ -36,6 +37,7 @@ Dépendances incluses : django, djangorestframework, mysqlclient, django-cors-he
 
 
 Configurer la base de données :
+Assurez-vous que WAMP est en cours d’exécution et que le service MySQL est démarré (icône WAMP verte).
 Créez une base de données cloud_services dans phpMyAdmin (http://localhost/phpmyadmin).
 Créez un utilisateur MySQL :CREATE USER 'api_user'@'localhost' IDENTIFIED BY 'votre_mot_de_passe';
 GRANT ALL PRIVILEGES ON cloud_services.* TO 'api_user'@'localhost';
@@ -48,7 +50,7 @@ Mettez à jour settings.py avec vos identifiants MySQL :DATABASES = {
         'NAME': 'cloud_services',
         'USER': 'api_user',
         'PASSWORD': 'votre_mot_de_passe',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
@@ -56,7 +58,8 @@ Mettez à jour settings.py avec vos identifiants MySQL :DATABASES = {
 
 
 
-Appliquer les migrations :python manage.py migrate
+Appliquer les migrations :python manage.py makemigrations
+python manage.py migrate
 
 
 Lancer le serveur :python manage.py runserver
@@ -74,13 +77,50 @@ Naviguer dans le dossier frontend :cd frontend/react-cloud
 Installer les dépendances :npm install
 
 
-Dépendances incluses : react, axios.
+Dépendances incluses : react, axios, tailwindcss@3.4.14, postcss, autoprefixer.
+
+
+Configurer Tailwind CSS :
+Générez les fichiers de configuration :npx tailwindcss init -p
+
+
+Mettez à jour tailwind.config.js pour inclure vos fichiers React :/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+
+Vérifiez postcss.config.js :export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+
+
+Ajoutez les directives Tailwind à src/index.css :@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+Configurer ESLint :
+Un fichier .eslintrc.cjs est inclus pour configurer ESLint. Il est compatible avec React et ESM. Pour vérifier le linting :npm run lint
+
+
 
 
 Lancer l’application :npm run dev
 
 
-Accédez à http://localhost:5173 (port par défaut de Vite).
+Accédez à http://localhost:5173.
 
 
 
@@ -95,25 +135,27 @@ DELETE /api/services/<id>/ : Supprime un service.
 Documentation détaillée : API_DOCUMENTATION.md.
 
 
-Interface cliente :
-Affichage de la liste des services dans un tableau.
-Formulaire pour ajouter un nouveau service.
-Boutons pour modifier ou supprimer un service.
-Capture d’écran de l’interface (si disponible).
+Interface client :
+Affichage de la liste des services.
+Formulaire pour créer un nouveau service.
+Page pour modifier les détails d’un service.
+Boutons pour supprimer un service.
+Stylisation avec Tailwind CSS.
+Capture de l’interface (si disponible).
 
 
 
 Tests
 
-Postman : Une collection (Cloud_Services_API.postman_collection.json) est fournie pour tester les endpoints. Importez-la dans Postman pour exécuter les tests automatiques.
+Postman : Une collection (screenshots/Cloud_Services_API.postman_collection.json) est fournie pour tester les endpoints. Importez-la dans Postman pour exécuter les tests automatiques.
 Capture d’écran de Postman (si disponible).
-Instructions : Voir API_DOCUMENTATION.md pour les détails des endpoints et des exemples de requêtes.
+Instructions : Voir API_DOCUMENTATION.md pour des exemples d’appels API.
 
 Configuration serveur
 
-Environnement : WAMP sur Windows (Apache, PHP, MySQL, phpMyAdmin).
-Base de données : MySQL, accessible via phpMyAdmin (http://localhost/phpmyadmin).
-FTP : Configuré avec FileZilla Server (dossier racine : C:\wamp64\www).
+Environnement : Vite/React sur le serveur frontal et WAMP sur Windows pour le backend (Apache, MySQL, PHP, phpMyAdmin).
+Base de données : MySQL, accessible sur http://localhost/phpmyadmin.
+FTP : Configuré avec FileZilla Server (dossier racine : /wamp/www).
 Capture d’écran de phpMyAdmin (si disponible).
 
 Démonstration
@@ -126,18 +168,19 @@ Plan suggéré :
 3 min : Questions et conclusion.
 
 
-Accédez au dépôt GitHub pour les ressources : https://github.com/hientibo/cloud-services.
+Accéder au dépôt GitHub pour les ressources : GitHub.
 
 Contributeurs
 
 Développeur : Tibo
 Entreprise : INTEGRIS SARL
-Contact : contact@integriscloud.com
+Contact : contact@cloud-services.com
 
 Licence
 MIT License
 Remarques
 
-Assurez-vous que WAMP est en cours d’exécution avant de lancer le backend ou le frontend.
-Pour des données de test, consultez API_DOCUMENTATION.md pour des exemples de services (ex. "Cloud Storage Basic").
+Assurez-vous que WAMP est en cours d’exécution et que le service MySQL est démarré avant de lancer le serveur backend.
+Si vous utilisez Python 3.13, assurez-vous que mysqlclient est compatible. Sinon, utilisez mysql-connector-python comme alternative.
+Pour des exemples de données, voir API Documentation pour des exemples de services (ex. "Cloud Storage Basic").
 
