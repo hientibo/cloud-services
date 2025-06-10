@@ -194,3 +194,36 @@ Assurez-vous que WAMP est en cours d’exécution et que le service MySQL est d�
 Si vous utilisez Python 3.13, assurez-vous que mysqlclient est compatible. Sinon, utilisez mysql-connector-python comme alternative.
 Pour des exemples de données, voir API Documentation pour des exemples de services (ex. "Cloud Storage Basic").
 
+
+
+
+Projet Cloud Services
+Introduction
+[...]
+Prérequis
+[...]
+Installation
+Développement local (Windows)
+[...]
+
+Exécutez npm run build dans frontend/react-cloud/ pour générer les fichiers statiques dans build. Ajustez vite.config.js avec outDir: 'build' si nécessaire.
+
+Déploiement avec Docker sur Ubuntu Server (VM sans GUI)
+[...]
+Intégration API
+[...]
+Fonctionnalités
+[...]
+Tests
+[...]
+Configuration serveur
+[...]
+Démonstration
+[...]
+Contributeurs
+[...]
+Licence
+MIT License
+Remarques
+[...]
+

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
-const API_URL = "http://127.0.0.1:8000/api/services/";
+const API_URL = "/api/services/";
 
 const ServiceList = () => {
     const [services, setServices] = useState([]);
@@ -13,6 +13,7 @@ const ServiceList = () => {
         service_type: "STORAGE",
     });
     const [loading, setLoading] = useState(true);
+    const formRef = useRef(null); // Référence au formulaire
 
     const fetchServices = async () => {
         try {
@@ -52,6 +53,10 @@ const ServiceList = () => {
 
     const handleEdit = (service) => {
         setForm(service);
+        // Faire défiler vers le formulaire après avoir rempli les données
+        if (formRef.current) {
+            formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
     };
 
     if (loading) return <div className="text-center p-6">Chargement...</div>;
@@ -60,7 +65,11 @@ const ServiceList = () => {
         <div className="max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6 sm:p-8 md:p-10">
             <h1 className="text-2xl font-bold mb-4">Services Cloud</h1>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form
+                ref={formRef} // Ajout de la référence au formulaire
+                onSubmit={handleSubmit}
+                className="space-y-4"
+            >
                 <input
                     type="text"
                     placeholder="Nom"

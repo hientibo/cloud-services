@@ -1,5 +1,6 @@
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,8 +15,8 @@ SECRET_KEY = 'django-insecure-8*#iv@0)qxqk7id*0i+vop@^yk8!_+1^j52^zzt%u0f#)h7-9i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'backend', '172.18.0.5']
 
 # Application definition
 
@@ -70,9 +71,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cloud_servicesdb',
         'USER': 'integris',
-        'PASSWORD': '1ntegris',         
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'PASSWORD': '1ntegris',
+        'HOST': os.environ.get('DB_HOST', 'db'),
+        'PORT': os.environ.get('DB_PORT', '3306'),
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
