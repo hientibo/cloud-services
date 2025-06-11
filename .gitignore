@@ -31,3 +31,4 @@ yarn-error.log*
 # Ignorer les builds
 dist/
 build/backend/settings.py
+frontend/react-cloud/build
