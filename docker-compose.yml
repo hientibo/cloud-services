@@ -47,6 +47,7 @@ services:
       - "8080:80"
       - "443:443"
     volumes:
+      - /home/ftpuser/build:/var/www/html
       - ./frontend/react-cloud/build:/var/www/html
       - ./apache-config.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
