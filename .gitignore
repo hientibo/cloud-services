@@ -30,4 +30,4 @@ yarn-error.log*
 
 # Ignorer les builds
 dist/
-build/
+build/backend/settings.py
