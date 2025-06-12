@@ -32,3 +32,7 @@ yarn-error.log*
 dist/
 build/backend/settings.py
 frontend/react-cloud/build
+
+# Ignorer les données MySQL locales
+mysql_data/
+db_data/
