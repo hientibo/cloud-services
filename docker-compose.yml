@@ -5,9 +5,9 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 1ntegris  # Remplace par un mot de passe fort
-      MYSQL_DATABASE: cloud_servicesdb        # Aligne avec settings.py
-      MYSQL_USER: integris                    # Aligne avec settings.py
-      MYSQL_PASSWORD: 1ntegris                # Aligne avec settings.py
+      MYSQL_DATABASE: cloud_servicesdb        
+      MYSQL_USER: integris                    
+      MYSQL_PASSWORD: 1ntegris               
     volumes:
       - db_data:/var/lib/mysql
 
